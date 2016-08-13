@@ -212,7 +212,7 @@
     <value>Mapa Niantic</value>
   </data>
   <data name="CandyTextBlock.Text" xml:space="preserve">
-    <value> CUKIERKI</value>
+    <value> CANDY</value>
     <comment>Watch out: space before the word!</comment>
   </data>
   <data name="HeightTextBlock.Text" xml:space="preserve">
@@ -237,9 +237,9 @@
     <value>Waga</value>
   </data>
   <data name="EvolveButton.Content" xml:space="preserve">
-    <value>EVOLVE</value>
+    <value>EWOLUUJ</value>
   </data>
   <data name="PowerUpButton.Content" xml:space="preserve">
-    <value>PODNIEŚ POZIOM</value>
+    <value>ULEPSZ</value>
   </data>
 </root>
