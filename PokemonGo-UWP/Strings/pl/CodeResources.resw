@@ -13,10 +13,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DateFormat" xml:space="preserve">
-    <value>dd.MM.rrrr</value>
+    <value>dd.MM.yyyy</value>
   </data>
   <data name="DateTimeFormat" xml:space="preserve">
-    <value>dd.MM.rrrr gg:mm tt</value>
+    <value>dd.MM.yyyy gg:mm tt</value>
   </data>
   <data name="PokemonFledText" xml:space="preserve">
     <value>{0} uciekł</value>
