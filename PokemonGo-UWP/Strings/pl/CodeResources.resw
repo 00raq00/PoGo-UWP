@@ -138,6 +138,9 @@
   <data name="GoogleNotRespondingText" xml:space="preserve">
     <value>Google nie odpowiada, spróbuj ponownie później.</value>
   </data>
+  <data name="LoginExpired" xml:space="preserve">
+    <value>Twoje dane logowania wygasły.</value>
+  </data>
   <data name="LoadingEncounterText" xml:space="preserve">
     <value>Ładowanie starcia z {0}</value>
   </data>
@@ -191,10 +194,43 @@ Czy otworzyć stronę z plikami instalacyjnymi w celu instalacji manualnej?</val
   <data name="NoTeamText" xml:space="preserve">
     <value>Brak drużyny</value>
   </data>
-  <data name="ValorTeamText" xml:space="preserve">
+<data name="ValorTeamText" xml:space="preserve">
     <value>Drużyna waleczności</value>
   </data>
   <data name="MysticTeamText" xml:space="preserve">
     <value>Drużyna mistyczności</value>
+  </data>  
+  <data name="ActivityUnknown" xml:space="preserve">
+    <value>Nieznane</value>
+  </data>
+  <data name="ActivityCatchPokemon" xml:space="preserve">
+    <value>Złapany Pokémon</value>
+  </data>
+  <data name="ActivityCatchLegendPokemon" xml:space="preserve">
+    <value>Złapany legendarny Pokémon</value>
+  </data>
+  <data name="ActivityFleePokemon" xml:space="preserve">
+    <value>Pokémon uciekł</value>
+  </data>
+  <data name="ActivityDefeatFort" xml:space="preserve">
+    <value>Pokonany fort</value>
+  </data>
+  <data name="ActivityEvolvePokemon" xml:space="preserve">
+    <value>Ewolucja Pokémona</value>
+  </data>
+  <data name="ActivityPokedexEntryNew" xml:space="preserve">
+    <value>Nowy Pokémon</value>
+  </data>
+  <data name="ActivityCatchFirstThrow" xml:space="preserve">
+    <value>Pirwszy rzut</value>
+  </data>
+  <data name="ActivityCatchNiceThrow" xml:space="preserve">
+    <value>Ładny rzut</value>
+  </data>
+  <data name="ActivityCatchGreatThrow" xml:space="preserve">
+    <value>Świetny rzut</value>
+  </data>
+  <data name="ActivityCatchExcellentThrow" xml:space="preserve">
+    <value>Wspaniały rzut</value>
   </data>
 </root>
