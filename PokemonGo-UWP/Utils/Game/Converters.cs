@@ -10,7 +10,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using GeoExtensions;
-using Google.Common.Geometry;
 using Google.Protobuf.Collections;
 using PokemonGo.RocketAPI.Extensions;
 using PokemonGo_UWP.Entities;
@@ -60,26 +59,6 @@ namespace PokemonGo_UWP.Utils
         #endregion
     }
 
-    public class PokemonDataToCapturedGepositionConverter : IValueConverter
-    {
-        #region Implementation of IValueConverter
-
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (value == null) return new BasicGeoposition();
-            var pokemonData = (PokemonData) value;
-            var cellId = new S2CellId(pokemonData.CapturedCellId).ToLatLng();            
-            return new Geopoint(new BasicGeoposition() {Latitude = cellId.LatDegrees, Longitude = cellId.LngDegrees});
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            return value;
-        }
-
-        #endregion
-    }
-
     public class PokemonDataToPokemonTypeBackgroundConverter : IValueConverter
     {
         #region Implementation of IValueConverter
@@ -88,7 +67,7 @@ namespace PokemonGo_UWP.Utils
         {
             if (value == null) return new Uri("ms-appx:///Assets/Backgrounds/details_type_bg_normal.png");
             var pokemonData = (PokemonDataWrapper) value;            
-            return new Uri($"ms-appx:///Assets/Backgrounds/details_type_bg_{GameClient.GetExtraDataForPokemon(pokemonData.PokemonId).Type}.png");
+            return new Uri($"ms-appx:///Assets/Backgrounds/details_type_bg_{GameClient.PokedexExtraData.First(item => item.PokemonId == pokemonData.PokemonId).Type}.png");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -107,64 +86,7 @@ namespace PokemonGo_UWP.Utils
         {
             if (value == null) return new Uri("ms-appx:///Assets/Backgrounds/details_type_bg_normal.png");
             var pokemonData = (PokemonDataWrapper)value;
-            return new Uri($"ms-appx:///Assets/Backgrounds/details_type_bg_{GameClient.GetExtraDataForPokemon(pokemonData.PokemonId).Type}.png");
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            return value;
-        }
-
-        #endregion
-    }
-
-    public class PokemonMoveToMoveNameConverter : IValueConverter
-    {
-        #region Implementation of IValueConverter
-
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (value == null) return string.Empty;
-            var move = (PokemonMove)value;
-            return Resources.PokemonMoves.GetString(move.ToString());
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            return value;
-        }
-
-        #endregion
-    }
-
-    public class PokemonMoveToMoveTypeStringConverter : IValueConverter
-    {
-        #region Implementation of IValueConverter
-
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (value == null) return string.Empty;
-            var move = (PokemonMove) value;
-            return GameClient.MoveSettings.First(item => item.MovementId == move).PokemonType;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            return value;
-        }
-
-        #endregion
-    }
-
-    public class PokemonMoveToMovePowerConverter : IValueConverter
-    {
-        #region Implementation of IValueConverter
-
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (value == null) return string.Empty;
-            var move = (PokemonMove)value;
-            return GameClient.MoveSettings.First(item => item.MovementId == move).Power;
+            return new Uri($"ms-appx:///Assets/Backgrounds/details_type_bg_{GameClient.PokedexExtraData.First(item => item.PokemonId == pokemonData.PokemonId).Type}.png");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -230,13 +152,13 @@ namespace PokemonGo_UWP.Utils
         #endregion
     }
 
-    public class ItemToItemIconConverter : IValueConverter
+    public class ItemAwardToItemIconConverter : IValueConverter
     {
         #region Implementation of IValueConverter
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var itemId = (value as ItemAward)?.ItemId ?? ((value as ItemData)?.ItemId ?? ((ItemDataWrapper)value).ItemId);
+            var itemId = ((ItemAward) value).ItemId;
             return new Uri($"ms-appx:///Assets/Items/Item_{(int) itemId}.png");
         }
 
@@ -255,9 +177,11 @@ namespace PokemonGo_UWP.Utils
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var teamColor = (TeamColor) value;
+            var currentTime = int.Parse(DateTime.Now.ToString("HH"));
+            var noTeamColor = currentTime > 7 && currentTime < 19 ? Colors.Black : Colors.White;
             return new SolidColorBrush(teamColor == TeamColor.Neutral
-                ? Color.FromArgb(255, 26, 237, 213)
-                : teamColor == TeamColor.Blue ? Color.FromArgb(255, 36, 176, 253) : teamColor == TeamColor.Red ? Color.FromArgb(255, 237, 90, 90) : Color.FromArgb(255, 254, 225, 63));
+                ? noTeamColor
+                : teamColor == TeamColor.Blue ? Colors.Blue : teamColor == TeamColor.Red ? Colors.Red : Colors.Yellow);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -320,26 +244,6 @@ namespace PokemonGo_UWP.Utils
         #endregion
     }
 
-    public class AchievementDescriptionTranslationConverter : IValueConverter {
-        #region Implementation of IValueConverter
-
-        public object Convert(object value, Type targetType, object parameter, string language) {
-            var achievementType = (KeyValuePair<AchievementType, object>)value;
-            var type = achievementType.Key.GetType();
-            var fieldInfo = type.GetField(achievementType.Key.ToString());
-            var badgeType =
-                (BadgeTypeAttribute)fieldInfo.GetCustomAttributes(typeof(BadgeTypeAttribute), false).First();
-
-            return badgeType == null ? "" : string.Format(Resources.Achievements.GetString(badgeType.Value.ToString() + "Description"),achievementType.Value);
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language) {
-            return value;
-        }
-
-        #endregion
-    }
-
     public class AchievementValueToMedalImageConverter : IValueConverter
     {
         #region Implementation of IValueConverter
@@ -352,9 +256,7 @@ namespace PokemonGo_UWP.Utils
             var bronze = (BronzeAttribute) fieldInfo.GetCustomAttributes(typeof(BronzeAttribute), false).First();
             var silver = (SilverAttribute) fieldInfo.GetCustomAttributes(typeof(SilverAttribute), false).First();
             var gold = (GoldAttribute) fieldInfo.GetCustomAttributes(typeof(GoldAttribute), false).First();
-            if (achievement.Value == null) {
-                return new BitmapImage(new Uri("ms-appx:///Assets/Achievements/badge_lv0.png"));
-            }
+
             if (float.Parse(achievement.Value.ToString()) < float.Parse(bronze.Value.ToString()))
             {
                 return new BitmapImage(new Uri("ms-appx:///Assets/Achievements/badge_lv0.png"));
@@ -390,9 +292,7 @@ namespace PokemonGo_UWP.Utils
             var bronze = (BronzeAttribute) fieldInfo.GetCustomAttributes(typeof(BronzeAttribute), false).First();
             var silver = (SilverAttribute) fieldInfo.GetCustomAttributes(typeof(SilverAttribute), false).First();
             var gold = (GoldAttribute) fieldInfo.GetCustomAttributes(typeof(GoldAttribute), false).First();
-            if(achievement.Value == null) {
-                return 0;
-            }
+
             if (achievement.Value is float)
             {
                 if (float.Parse(achievement.Value.ToString()) < float.Parse(bronze.Value.ToString()))
@@ -404,18 +304,6 @@ namespace PokemonGo_UWP.Utils
                     return float.Parse(silver.Value.ToString()).ToString("N1");
                 }
                 return float.Parse(gold.Value.ToString()).ToString("N1");
-            }
-            if (achievement.Value is double)
-            {
-                if (double.Parse(achievement.Value.ToString()) < double.Parse(bronze.Value.ToString()))
-                {
-                    return float.Parse(bronze.Value.ToString()).ToString("N1");
-                }
-                if (double.Parse(achievement.Value.ToString()) < double.Parse(silver.Value.ToString()))
-                {
-                    return float.Parse(silver.Value.ToString()).ToString("N1");
-                }
-                return double.Parse(gold.Value.ToString()).ToString("N1");
             }
             if (int.Parse(achievement.Value.ToString()) < int.Parse(bronze.Value.ToString()))
             {
@@ -602,7 +490,7 @@ namespace PokemonGo_UWP.Utils
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var itemId = (value as ItemAward)?.ItemId ?? ((value as ItemData)?.ItemId ?? ((ItemDataWrapper)value).ItemId);
+            var itemId = value is ItemAward ? ((ItemAward) value).ItemId : ((ItemData) value).ItemId;
             return Resources.Items.GetString(itemId.ToString());
         }
 
@@ -620,7 +508,7 @@ namespace PokemonGo_UWP.Utils
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var itemId = (value as ItemAward)?.ItemId ?? ((value as ItemData)?.ItemId ?? ((ItemDataWrapper)value).ItemId);
+            var itemId = value is ItemAward ? ((ItemAward) value).ItemId : ((ItemData) value).ItemId;
             return Resources.Items.GetString("D_" + itemId);
         }
 
@@ -657,8 +545,7 @@ namespace PokemonGo_UWP.Utils
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var activityType = (ActivityType) value;
-            var resActivityType = Resources.CodeResources.GetString(activityType.ToString()); ;
-            return string.IsNullOrEmpty(resActivityType)?activityType.ToString().Replace("Activity", ""):resActivityType;
+            return activityType.ToString().Replace("Activity", "");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -711,46 +598,72 @@ namespace PokemonGo_UWP.Utils
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value == null) return "";
-            var pokemonType = (PokemonType) value;       
-            return $"ms-appx:///Assets/Candy/{pokemonType}.png";
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            return value;
-        }
-
-        #endregion
-    }
-
-    public class InverseVisibleWhenTypeIsNotNoneConverter : IValueConverter
-    {
-        #region Implementation of IValueConverter
-
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (value == null) return Visibility.Collapsed;
-            var pokemonType = (PokemonType)value;
-            return pokemonType != PokemonType.None ? Visibility.Collapsed : Visibility.Visible;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            return value;
-        }
-
-        #endregion
-    }
-
-    public class VisibleWhenTypeIsNotNoneConverter : IValueConverter
-    {
-        #region Implementation of IValueConverter
-
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            if (value == null) return Visibility.Collapsed;
-            var pokemonType = (PokemonType)value;
-            return pokemonType == PokemonType.None ? Visibility.Collapsed : Visibility.Visible;
+            var pokemonType = (PokemonType) value;
+            var baseColor = string.Empty;
+            switch (pokemonType)
+            {
+                case PokemonType.Grass:
+                    baseColor = "B1BF21";
+                    break;
+                case PokemonType.Fire:
+                    baseColor = "E54C3C"; 
+                    break;
+                case PokemonType.Electric:
+                    baseColor = "FFD742";
+                    break;
+                case PokemonType.Ground:
+                    baseColor = "DABB51";
+                    break;
+                case PokemonType.Fighting:
+                    baseColor = "B36A57";
+                    break;
+                case PokemonType.Normal:
+                    baseColor = "AFB09E";
+                    break;
+                case PokemonType.Poison:
+                    baseColor = "9A599B";
+                    break;
+                case PokemonType.Psychic:
+                    baseColor = "DE5FA4";
+                    break;
+                case PokemonType.None:
+                    baseColor = "83C44C";
+                    break;
+                case PokemonType.Ice:
+                    baseColor = "87DBFD";
+                    break;
+                case PokemonType.Rock:
+                    baseColor = "BBAD62";
+                    break;
+                case PokemonType.Dragon:
+                    baseColor = "776CE2";
+                    break;
+                case PokemonType.Water:
+                    baseColor = "47A1FF";
+                    break;
+                case PokemonType.Bug:
+                    baseColor = "B1BF21";
+                    break;
+                case PokemonType.Dark:
+                    baseColor = "81604D";
+                    break;
+                case PokemonType.Ghost:
+                    baseColor = "6D6EC1";
+                    break;
+                case PokemonType.Steel:
+                    baseColor = "B0AFC1";
+                    break;
+                case PokemonType.Flying:
+                    baseColor = "6B95F7";
+                    break;
+                case PokemonType.Fairy:
+                    baseColor = "E59DE7";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }    
+            // TODO: cache those files!        
+            return $"https://pokemon.agne.no/candyMaker.php?base={baseColor}&secondary=f8f8f8&zoom=1";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
@@ -823,18 +736,14 @@ namespace PokemonGo_UWP.Utils
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var fortDataStatus = (FortDataStatus) value;
-            var resourceUriString = "ms-appx:///Assets/Icons/pokestop_";
-
             switch (fortDataStatus)
             {
                 case FortDataStatus.Opened:
                     return new Uri($"ms-appx:///Assets/Icons/pokestop_near.png");
                 case FortDataStatus.Closed:
                     return new Uri("ms-appx:///Assets/Icons/pokestop_far.png");
-                case FortDataStatus.Opened | FortDataStatus.Cooldown:
+                case FortDataStatus.Cooldown:
                     return new Uri($"ms-appx:///Assets/Icons/pokestop_near_inactive.png");
-                case FortDataStatus.Closed | FortDataStatus.Cooldown:
-                    return new Uri($"ms-appx:///Assets/Icons/pokestop_far_inactive.png");
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -983,23 +892,6 @@ namespace PokemonGo_UWP.Utils
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             return string.IsNullOrEmpty((string) value) ? Visibility.Visible : Visibility.Collapsed;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            return value;
-        }
-
-        #endregion
-    }
-
-    public class VisibleWhenGreaterThanConverter : IValueConverter
-    {
-        #region Implementation of IValueConverter
-
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            return (int)value > (parameter != null ? System.Convert.ToInt32(parameter) : 0) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

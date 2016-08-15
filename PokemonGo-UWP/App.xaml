@@ -4,7 +4,6 @@
                      xmlns:common="using:Template10.Common"
                      xmlns:utils="using:PokemonGo_UWP.Utils"
                      xmlns:converters="using:Template10.Converters"
-                     xmlns:enums="using:POGOProtos.Enums"
                      RequestedTheme="Light">
 
     <Application.Resources>
@@ -23,7 +22,7 @@
             <utils:MapObjectToGeopointConverter x:Key="MapObjectToGeopointConverter" />
             <utils:ItemIdToItemIconConverter x:Key="ItemIdToItemIconConverter" />
             <utils:PokemonDataToVisibilityConverter x:Key="PokemonDataToVisibilityConverter" />
-            <utils:ItemToItemIconConverter x:Key="ItemToItemIconConverter" />
+            <utils:ItemAwardToItemIconConverter x:Key="ItemAwardToPokemonSpriteConverter" />
             <utils:NearbyPokemonDistanceToDistanceImageConverter x:Key="NearbyPokemonDistanceToDistanceImageConverter" />
             <utils:PokestopToIconConverter x:Key="PokestopToIconConverter" />
             <utils:CurrentTimeToMapColorSchemeConverter x:Key="CurrentTimeToMapColorSchemeConverter" />
@@ -37,7 +36,6 @@
             <utils:IncubatorUsagesCountToUsagesTextConverter x:Key="IncubatorUsagesCountToUsagesTextConverter" />
             <utils:EggDataToEggIconConverter x:Key="EggDataToEggIconConverter" />
             <utils:VisibleWhenStringEmptyConverter x:Key="VisibleWhenStringEmptyConverter" />
-            <utils:VisibleWhenGreaterThanConverter x:Key="VisibleWhenGreaterThanConverter" />
             <utils:PlayerStatsTranslationConverter x:Key="PlayerStatsTranslationConverter" />
             <utils:MsToDateFormatConverter x:Key="MsToDateFormatConverter" />
             <utils:PlayerTeamToTeamImageConverter x:Key="PlayerTeamToTeamImageConverter" />
@@ -57,14 +55,6 @@
             <utils:PokemonDataToLevelBarConverter x:Key="PokemonDataToLevelBarConverter"/>
             <utils:PokemonFamilyToCandyImageConverter x:Key="PokemonFamilyToCandyImageConverter"/>
             <utils:PokemonFamilyNameToStringConverter x:Key="PokemonFamilyNameToStringConverter"/>
-            <utils:PokemonMoveToMoveTypeStringConverter x:Key="PokemonMoveToMoveTypeStringConverter"/>
-            <utils:PokemonMoveToMoveNameConverter x:Key="PokemonMoveToMoveNameConverter"/>
-            <utils:PokemonMoveToMovePowerConverter x:Key="PokemonMoveToMovePowerConverter"/>
-            <utils:VisibleWhenTypeIsNotNoneConverter x:Key="VisibleWhenTypeIsNotNoneConverter"/>
-            <utils:InverseVisibleWhenTypeIsNotNoneConverter x:Key="InverseVisibleWhenTypeIsNotNoneConverter"/>
-            <utils:PokemonDataToCapturedGepositionConverter x:Key="PokemonDataToCapturedGepositionConverter"/>
-            <utils:AchievementDescriptionTranslationConverter x:Key="AchievementDescriptionTranslationConverter"/>
-            
 
             <converters:ValueWhenConverter x:Key="EnabledWhenHasElementsConverter">
                 <converters:ValueWhenConverter.When>

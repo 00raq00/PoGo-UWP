@@ -1,5 +1,4 @@
 ﻿using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
@@ -25,6 +24,7 @@ namespace PokemonGo_UWP.Views
                 HideIncubatorsModalStoryboard.Completed += (ss, ee) => { IncubatorsModal.IsModal = false; };
             };
         }
+
 
         private void ToggleIncubatorModel(object sender, TappedRoutedEventArgs e)
         {
@@ -61,36 +61,5 @@ namespace PokemonGo_UWP.Views
         }
 
         #endregion
-
-        private void SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            SortingButton.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            IncubatorButton.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-
-            switch (((Pivot)sender).SelectedIndex)
-            {                
-                case 0:
-                    SortingButton.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                    break;
-
-                case 1:
-                    IncubatorButton.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                    break;
-            }
-        }
-
-        private void GridViewPokemonSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            var panel_threads = (ItemsWrapGrid)PokemonInventoryGridView.ItemsPanelRoot;
-            panel_threads.ItemWidth = e.NewSize.Width / 3;
-        }
-
-        private void GridViewEggsSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            var panel_threads = (ItemsWrapGrid)EggsInventoryGridView.ItemsPanelRoot;
-            panel_threads.ItemWidth = e.NewSize.Width / 4;
-        }
-
     }
 }

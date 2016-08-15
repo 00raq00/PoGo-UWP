@@ -23,11 +23,6 @@ namespace PokemonGo_UWP.Entities
         public PokemonData WrappedData { get; }
 
         /// <summary>
-        /// The file name for this Pokemen, located in /Assets/Pokemons
-        /// </summary>
-        public string ImageFileName => $"{(int)PokemonId}.png";
-
-        /// <summary>
         ///     Navigate to detail page for the selected egg
         /// </summary>
         public DelegateCommand GotoEggDetailsCommand => _gotoEggDetailsCommand ?? (
@@ -116,7 +111,7 @@ namespace PokemonGo_UWP.Entities
     {
         private readonly EggIncubator _incubatorData;
         private readonly double playerWalkedKm;
-        public IncubatedEggDataWrapper(EggIncubator incubatorData, double playerWalkedKm, PokemonData incubatedEgg) : base(incubatedEgg)
+        public IncubatedEggDataWrapper(EggIncubator incubatorData, double playerWalkedKm, PokemonData pokemonData) : base(pokemonData)
         {
             _incubatorData = incubatorData;
             this.playerWalkedKm = playerWalkedKm;

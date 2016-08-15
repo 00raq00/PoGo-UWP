@@ -42,7 +42,7 @@ namespace PokemonGo_UWP.ViewModels
                 PokemonInventory = (ObservableCollection<PokemonDataWrapper>) suspensionState[nameof(PokemonInventory)];
                 EggsInventory = (ObservableCollection<PokemonDataWrapper>) suspensionState[nameof(EggsInventory)];
             }
-            else
+            else if (parameter is bool)
             {
                 // Navigating from game page, so we need to actually load the inventory
                 // The sorting mode is directly bound to the settings
@@ -57,16 +57,14 @@ namespace PokemonGo_UWP.ViewModels
                 var incubatedEggs = GameClient.EggsInventory.Where(o => !string.IsNullOrEmpty(o.EggIncubatorId))
                                                               .OrderBy(c => c.EggKmWalkedTarget);
 
-                // advancedrei: I have verified this is the sort order in the game.
-                foreach (var incubatedEgg in incubatedEggs)
-                {
-                    var incubatorData = GameClient.UsedIncubatorsInventory.FirstOrDefault(incubator => incubator.Id == incubatedEgg.EggIncubatorId);
-                    EggsInventory.Add(new IncubatedEggDataWrapper(incubatorData, GameClient.PlayerStats.KmWalked, incubatedEgg));
-                }
-
                 foreach (var pokemonData in unincubatedEggs)
                 {
                     EggsInventory.Add(new PokemonDataWrapper(pokemonData));
+                }
+                foreach (var incubatorData in GameClient.UsedIncubatorsInventory)
+                {
+                    var pokemonData = incubatedEggs.FirstOrDefault(o => o.EggIncubatorId == incubatorData.Id);
+                    EggsInventory.Add(new IncubatedEggDataWrapper(incubatorData,GameClient.PlayerStats.KmWalked, pokemonData));
                 }
             }
 
@@ -185,20 +183,17 @@ namespace PokemonGo_UWP.ViewModels
                 case PokemonSortingModes.Date:
                     return pokemonInventory.OrderByDescending(pokemon => pokemon.CreationTimeMs);
                 case PokemonSortingModes.Fav:
-                    return pokemonInventory.OrderByDescending(pokemon => pokemon.Favorite)
-                         .ThenByDescending(pokemon => pokemon.Cp); 
+                    return pokemonInventory.OrderByDescending(pokemon => pokemon.Favorite);
                 case PokemonSortingModes.Number:
-                    return pokemonInventory.OrderBy(pokemon => pokemon.PokemonId)
-                         .ThenByDescending(pokemon => pokemon.Cp); 
+                    return pokemonInventory.OrderBy(pokemon => pokemon.PokemonId);
                 case PokemonSortingModes.Health:
-                    return pokemonInventory.OrderByDescending(pokemon => pokemon.Stamina)
-                        .ThenByDescending(pokemon => pokemon.Cp);
+                    return pokemonInventory.OrderByDescending(pokemon => pokemon.Stamina);
                 case PokemonSortingModes.Name:
-                    return pokemonInventory.OrderBy(pokemon => Resources.Pokemon.GetString(pokemon.PokemonId.ToString()))
+                    return
+                        pokemonInventory.OrderBy(pokemon => Resources.Pokemon.GetString(pokemon.PokemonId.ToString()))
                             .ThenByDescending(pokemon => pokemon.Cp);
                 case PokemonSortingModes.Combat:
-                    return pokemonInventory.OrderByDescending(pokemon => pokemon.Cp)
-                        .ThenBy(pokemon => Resources.Pokemon.GetString(pokemon.PokemonId.ToString()));
+                    return pokemonInventory.OrderByDescending(pokemon => pokemon.Cp);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(CurrentPokemonSortingMode), sortingMode, null);
             }

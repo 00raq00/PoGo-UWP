@@ -158,10 +158,10 @@ namespace PokemonGo_UWP.ViewModels
         ///     Going back to map page
         /// </summary>
         public DelegateCommand AbandonPokestop => _abandonPokestop ?? (
-            _abandonPokestop = new DelegateCommand(async () =>
+            _abandonPokestop = new DelegateCommand(() =>
             {
                 // Re-enable update timer
-                await GameClient.ToggleUpdateTimer();
+                GameClient.ToggleUpdateTimer();
                 NavigationService.GoBack();
             }, () => true)
             );
@@ -226,7 +226,6 @@ namespace PokemonGo_UWP.ViewModels
                                 ItemCount = tmpItem.First().Count()
                             });
                         }
-                        CurrentPokestop.UpdateCooldown(CurrentSearchResponse.CooldownCompleteTimestampMs);
                         SearchSuccess?.Invoke(this, null);
                         await GameClient.UpdateInventory();
                         break;
@@ -242,19 +241,7 @@ namespace PokemonGo_UWP.ViewModels
                         break;
                     case FortSearchResponse.Types.Result.InventoryFull:
                         // Items can't be gathered because player's inventory is full, there's nothing that we can do
-                        AwardedItems.Clear();
-                        // TODO: can this be improved?
-                        tmpAwardedItems = CurrentSearchResponse.ItemsAwarded.GroupBy(item => item.ItemId);
-                        foreach (var tmpAwardedItem in tmpAwardedItems)
-                        {
-                            var tmpItem = tmpAwardedItem.GroupBy(item => item.ItemId);
-                            AwardedItems.Add(new ItemAward
-                            {
-                                ItemId = tmpItem.First().First().ItemId,
-                                ItemCount = tmpItem.First().Count()
-                            });
-                        }
-                        CurrentPokestop.UpdateCooldown(CurrentSearchResponse.CooldownCompleteTimestampMs);
+                        // TODO: do something here!
                         SearchInventoryFull?.Invoke(this, null);
                         break;
                     default:

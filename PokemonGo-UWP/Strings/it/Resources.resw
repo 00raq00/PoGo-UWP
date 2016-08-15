@@ -25,45 +25,42 @@
     <value>LOGIN con Account PTC</value>
   </data>
   <data name="LoginDisclaimerTextBox.Text" xml:space="preserve">
-    <value>Per effettuare il login, inserisci Username/Email e Password. Se non ti fidi, per favore chiudila ora. Niantic potrebbe bannarti nell'utilizzo di quest'app. Usa a tuo rischio e pericolo.</value>
+    <value>Per effettuare il login è necessario inserire il tuo Username/Email e Password. Se non ti fidi, per favore, chiudi prima di procedere. Non siamo responsabili di nulla.</value>
   </data>
   <data name="NearbyPokemonTextBlock.Text" xml:space="preserve">
     <value>nelle vicinanze</value>
   </data>
   <data name="OutOfRangeTextBlock.Text" xml:space="preserve">
-    <value>QUESTO POKÉSTOP È TROPPO LONTANO</value>
+    <value>Sei troppo lontano</value>
   </data>
   <data name="LoginPasswordPasswordBox.PlaceholderText" xml:space="preserve">
     <value>Password</value>
   </data>
   <data name="LoginUsernameTextBox.PlaceholderText" xml:space="preserve">
-    <value>Nome utente / e-mail</value>
+    <value>Nome utente/e-mail</value>
   </data>
   <data name="ExperienceTextBlock.Text" xml:space="preserve">
-    <value>PE</value>
+    <value>EXP</value>
   </data>
   <data name="OkButton.Content" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="CpTextBlock.Text" xml:space="preserve">
-    <value>PL</value>
+    <value>CP</value>
   </data>
   <data name="EggsTextBlock.Text" xml:space="preserve">
     <value>UOVA</value>
   </data>
-  <data name="SettingsMusicTextBlock.Text" xml:space="preserve">
+  <data name="MusicTextBlock.Text" xml:space="preserve">
     <value>Musica</value>
-  </data>
-  <data name="PokemonTextBlock.Text" xml:space="preserve">
-    <value>POKÉMON</value>
   </data>
   <data name="SettingsHeaderTextBlock.Text" xml:space="preserve">
     <value>IMPOSTAZIONI</value>
   </data>
-  <data name="SettingsSignOutTextBlock.Text" xml:space="preserve">
+  <data name="SignOutTextBlock.Text" xml:space="preserve">
     <value>Disconnetti</value>
   </data>
-  <data name="SettingsVibrationTextBlock.Text" xml:space="preserve">
+  <data name="VibrationTextBlock.Text" xml:space="preserve">
     <value>Vibrazione</value>
   </data>
   <data name="ItemsTextBlock.Text" xml:space="preserve">
@@ -77,21 +74,21 @@
     <comment>Watch out: there is a space after the #</comment>
   </data>
   <data name="SlashSpaceCpTextBlock.Text" xml:space="preserve">
-    <value>/ PL</value>
+    <value>/ CP</value>
   </data>
   <data name="SpaceXpTextBlock.Text" xml:space="preserve">
-    <value> PE</value>
+    <value> EXP</value>
   </data>
   <data name="TotalExperienceTextBlock.Text" xml:space="preserve">
     <value>TOTALE</value>
   </data>
   <data name="LevelUpTextBlock.Text" xml:space="preserve">
-    <value>Aumento di livello!</value>
+    <value>Aumento di livello</value>
   </data>
   <data name="LevelTextBlock.Text" xml:space="preserve">
     <value>Livello</value>
   </data>
-  <data name="SettingsMapAutoRotateTextBlock.Text" xml:space="preserve">
+  <data name="MapAutoRotateTextBlock.Text" xml:space="preserve">
     <value>Autorotazione mappa</value>
   </data>
   <data name="StartDateTextBlock.Text" xml:space="preserve">

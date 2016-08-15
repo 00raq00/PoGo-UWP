@@ -9,9 +9,6 @@ using POGOProtos.Data.Player;
 using POGOProtos.Enums;
 using Template10.Mvvm;
 using Template10.Services.NavigationService;
-using Windows.UI.Xaml.Controls;
-using PokemonGo_UWP.Views;
-using Template10.Common;
 
 namespace PokemonGo_UWP.ViewModels
 {
@@ -136,43 +133,40 @@ namespace PokemonGo_UWP.ViewModels
             Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Breeder, PlayerStats.EggsHatched));
             Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Backpacker,
                 PlayerStats.PokeStopVisits));
-            if (PlayerStats.PokemonCaughtByType.Count() > 0)
-            {
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.SchoolKid,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Normal]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Swimmer,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Water]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.BlackBelt,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Fighting]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.BirdKeeper,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Flying]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.PunkGirl,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Poison]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.RuinManiac,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Ground]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Hiker,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Rock]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.BugCatcher,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Bug]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.HexManiac,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Ghost]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.DepotAgent,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Steel]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Kindler,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Fire]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Gardener,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Grass]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Rocker,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Electric]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Psychic,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Psychic]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Skier,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Ice]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.DragonTamer,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Dragon]));
-                Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.FairyTaleGirl,
-                    PlayerStats.PokemonCaughtByType[(int)PokemonType.Fairy]));
-            }
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.SchoolKid,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Normal]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Swimmer,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Water]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.BlackBelt,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Fighting]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.BirdKeeper,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Flying]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.PunkGirl,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Poison]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.RuinManiac,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Ground]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Hiker,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Rock]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.BugCatcher,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Bug]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.HexManiac,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Ghost]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.DepotAgent,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Steel]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Kindler,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Fire]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Gardener,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Grass]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Rocker,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Electric]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Psychic,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Psychic]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Skier,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Ice]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.DragonTamer,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Dragon]));
+            Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.FairyTaleGirl,
+                PlayerStats.PokemonCaughtByType[(int) PokemonType.Fairy]));
             Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Youngster,
                 PlayerStats.SmallRattataCaught));
             Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.Fisherman,
@@ -180,17 +174,6 @@ namespace PokemonGo_UWP.ViewModels
             Achievements.Add(new KeyValuePair<AchievementType, object>(AchievementType.AceTrainer,
                 PlayerStats.BattleTrainingWon));
         }
-
-        #endregion
-
-        #region Navigate to detail page
-
-        private DelegateCommand<object> m_GoToAchievementDetailPage;
-
-        public DelegateCommand<object> GoToAchievementDetailPage => m_GoToAchievementDetailPage ?? (m_GoToAchievementDetailPage = new DelegateCommand<object>(x =>
-        {
-            BootStrapper.Current.NavigationService.Navigate(typeof(AchievementDetailPage), x);
-        }));
 
         #endregion
 

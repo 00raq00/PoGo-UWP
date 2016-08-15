@@ -190,10 +190,10 @@ namespace PokemonGo_UWP.ViewModels
         ///     Going back to map page
         /// </summary>
         public DelegateCommand EscapeEncounterCommand => _escapeEncounterCommand ?? (
-            _escapeEncounterCommand = new DelegateCommand(async () =>
+            _escapeEncounterCommand = new DelegateCommand(() =>
             {
                 // Re-enable update timer
-                await GameClient.ToggleUpdateTimer();
+                GameClient.ToggleUpdateTimer();
                 NavigationService.GoBack();
             }, () => true));
 
@@ -286,14 +286,9 @@ namespace PokemonGo_UWP.ViewModels
         /// <returns></returns>
         private async Task ThrowPokeball(bool hitPokemon)
         {
-            // We use to simulate a 5 second wait to get animation going
-            // If server takes too much to reply then we don't use the delay
-            var requestTime = DateTime.Now;
             var caughtPokemonResponse =
                 await GameClient.CatchPokemon(CurrentPokemon.EncounterId, CurrentPokemon.SpawnpointId,
                         SelectedCaptureItem.ItemId, hitPokemon);
-            var responseDelay = DateTime.Now - requestTime;
-            if (responseDelay.TotalSeconds < 5) await Task.Delay(TimeSpan.FromSeconds(5 - (int)responseDelay.TotalSeconds));
             var nearbyPokemon = GameClient.NearbyPokemons.FirstOrDefault(pokemon => pokemon.EncounterId == CurrentPokemon.EncounterId);
 
             switch (caughtPokemonResponse.Status)
@@ -319,7 +314,7 @@ namespace PokemonGo_UWP.ViewModels
                     GameClient.CatchablePokemons.Remove(CurrentPokemon);
                     GameClient.NearbyPokemons.Remove(nearbyPokemon);
                     // We just go back because there's nothing else to do
-                    await GameClient.ToggleUpdateTimer();
+                    GameClient.ToggleUpdateTimer();
                     break;
                 case CatchPokemonResponse.Types.CatchStatus.CatchMissed:
                     Logger.Write($"We missed {CurrentPokemon.PokemonId}");
@@ -329,7 +324,6 @@ namespace PokemonGo_UWP.ViewModels
             }
             // We always need to update the inventory
             await GameClient.UpdateInventory();
-            SelectStartingBall();
         }
 
         /// <summary>
