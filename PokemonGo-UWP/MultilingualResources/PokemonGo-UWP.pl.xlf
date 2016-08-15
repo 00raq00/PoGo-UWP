@@ -12,126 +12,6 @@
         </trans-unit>
         <trans-unit id="BadgeBattleTrainingWon" translate="yes" xml:space="preserve">
           <source>Ace Trainer</source>
-          <target state="translated">Cool Trainer</target>
-        </trans-unit>
-        <trans-unit id="BadgeBigMagikarp" translate="yes" xml:space="preserve">
-          <source>Fisherman</source>
-          <target state="new">Fisherman</target>
-        </trans-unit>
-        <trans-unit id="BadgeCaptureTotal" translate="yes" xml:space="preserve">
-          <source>Collector</source>
-          <target state="new">Collector</target>
-        </trans-unit>
-        <trans-unit id="BadgeEvolvedTotal" translate="yes" xml:space="preserve">
-          <source>Scientist</source>
-          <target state="new">Scientist</target>
-        </trans-unit>
-        <trans-unit id="BadgeHatchedTotal" translate="yes" xml:space="preserve">
-          <source>Breeder</source>
-          <target state="new">Breeder</target>
-        </trans-unit>
-        <trans-unit id="BadgePikachu" translate="yes" xml:space="preserve">
-          <source>Pikachu</source>
-          <target state="new">Pikachu</target>
-        </trans-unit>
-        <trans-unit id="BadgePokedexEntries" translate="yes" xml:space="preserve">
-          <source>Kanto</source>
-          <target state="new">Kanto</target>
-        </trans-unit>
-        <trans-unit id="BadgePokestopsVisited" translate="yes" xml:space="preserve">
-          <source>Backpacker</source>
-          <target state="new">Backpacker</target>
-        </trans-unit>
-        <trans-unit id="BadgeSmallRattata" translate="yes" xml:space="preserve">
-          <source>Youngster</source>
-          <target state="new">Youngster</target>
-        </trans-unit>
-        <trans-unit id="BadgeTravelKm" translate="yes" xml:space="preserve">
-          <source>Jogger</source>
-          <target state="new">Jogger</target>
-        </trans-unit>
-        <trans-unit id="Bug" translate="yes" xml:space="preserve">
-          <source>Bug Catcher</source>
-          <target state="new">Bug Catcher</target>
-        </trans-unit>
-        <trans-unit id="Dragon" translate="yes" xml:space="preserve">
-          <source>Dragon Tamer</source>
-          <target state="new">Dragon Tamer</target>
-        </trans-unit>
-        <trans-unit id="Electric" translate="yes" xml:space="preserve">
-          <source>Rocker</source>
-          <target state="new">Rocker</target>
-        </trans-unit>
-        <trans-unit id="Fairy" translate="yes" xml:space="preserve">
-          <source>Fairy Tale Girl</source>
-          <target state="new">Fairy Tale Girl</target>
-        </trans-unit>
-        <trans-unit id="Fighting" translate="yes" xml:space="preserve">
-          <source>Black Belt</source>
-          <target state="new">Black Belt</target>
-        </trans-unit>
-        <trans-unit id="Fire" translate="yes" xml:space="preserve">
-          <source>Kindler</source>
-          <target state="new">Kindler</target>
-        </trans-unit>
-        <trans-unit id="Flying" translate="yes" xml:space="preserve">
-          <source>Bird Keeper</source>
-          <target state="new">Bird Keeper</target>
-        </trans-unit>
-        <trans-unit id="Ghost" translate="yes" xml:space="preserve">
-          <source>Hex Maniac</source>
-          <target state="new">Hex Maniac</target>
-        </trans-unit>
-        <trans-unit id="Grass" translate="yes" xml:space="preserve">
-          <source>Gardener</source>
-          <target state="new">Gardener</target>
-        </trans-unit>
-        <trans-unit id="Ground" translate="yes" xml:space="preserve">
-          <source>Ruin Maniac</source>
-          <target state="new">Ruin Maniac</target>
-        </trans-unit>
-        <trans-unit id="Ice" translate="yes" xml:space="preserve">
-          <source>Skier</source>
-          <target state="new">Skier</target>
-        </trans-unit>
-        <trans-unit id="Normal" translate="yes" xml:space="preserve">
-          <source>School Kid</source>
-          <target state="new">School Kid</target>
-        </trans-unit>
-        <trans-unit id="Poison" translate="yes" xml:space="preserve">
-          <source>Punk Girl</source>
-          <target state="new">Punk Girl</target>
-        </trans-unit>
-        <trans-unit id="Psychic" translate="yes" xml:space="preserve">
-          <source>Psychic</source>
-          <target state="new">Psychic</target>
-        </trans-unit>
-        <trans-unit id="Rock" translate="yes" xml:space="preserve">
-          <source>Hiker</source>
-          <target state="new">Hiker</target>
-        </trans-unit>
-        <trans-unit id="Steel" translate="yes" xml:space="preserve">
-          <source>Depot Agent</source>
-          <target state="new">Depot Agent</target>
-        </trans-unit>
-        <trans-unit id="Water" translate="yes" xml:space="preserve">
-          <source>Swimmer</source>
-          <target state="new">Swimmer</target>
-        </trans-unit>
-<?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="pl" original="POKEMONGO-UWP/STRINGS/EN-US/ACHIEVEMENTS.RESW" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
-    <header>
-      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.1605.0" tool-company="Microsoft" />
-    </header>
-    <body>
-      <group id="POKEMONGO-UWP/STRINGS/EN-US/ACHIEVEMENTS.RESW" datatype="resx">
-        <trans-unit id="BadgeBattleAttackWon" translate="yes" xml:space="preserve">
-          <source>Battle Girl</source>
-          <target state="new">Battle Girl</target>
-        </trans-unit>
-        <trans-unit id="BadgeBattleTrainingWon" translate="yes" xml:space="preserve">
-          <source>Ace Trainer</source>
           <target state="new">Ace Trainer</target>
         </trans-unit>
         <trans-unit id="BadgeBigMagikarp" translate="yes" xml:space="preserve">
@@ -601,8 +481,9 @@ Czy otworzyć stronę z plikami instalacyjnymi w celu instalacji manualnej?</tar
           <target state="translated">Logowanie z kontem PTC</target>
         </trans-unit>
         <trans-unit id="LoginDisclaimerTextBox.Text" translate="yes" xml:space="preserve">
-          <source>To login you need to insert your Username/Email and Password in this app. If you don't trust it, please, close it before going on. We are not responsible for anything.</source>
-          <target state="translated">Żeby się zalogować, musisz wpisać swoją Nazwę Użytkownika/E-mail i Hasło w tej aplikacji. Jeśli jej nie ufasz, zamknij ją. My nie jesteśmy za nic odpowiedzialni.</target>
+          <source>To login, enter your Username/Email and Password above. If you don't trust this app, please close it now. Niantic may ban you for using this app. Use at your own risk.</source>
+          <target state="needs-review-translation">Żeby się zalogować, musisz wpisać swoją Nazwę Użytkownika/E-mail i Hasło w tej aplikacji. Jeśli jej nie ufasz, zamknij ją. My nie jesteśmy za nic odpowiedzialni.</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="NearbyPokemonTextBlock.Text" translate="yes" xml:space="preserve">
           <source>nearby</source>
@@ -636,7 +517,7 @@ Czy otworzyć stronę z plikami instalacyjnymi w celu instalacji manualnej?</tar
           <source>EGGS</source>
           <target state="translated">JAJKA</target>
         </trans-unit>
-        <trans-unit id="MusicTextBlock.Text" translate="yes" xml:space="preserve">
+        <trans-unit id="SettingsMusicTextBlock.Text" translate="yes" xml:space="preserve">
           <source>Music</source>
           <target state="translated">Muzyka</target>
         </trans-unit>
@@ -648,11 +529,11 @@ Czy otworzyć stronę z plikami instalacyjnymi w celu instalacji manualnej?</tar
           <source>SETTINGS</source>
           <target state="translated">USTAWIENIA</target>
         </trans-unit>
-        <trans-unit id="SignOutTextBlock.Text" translate="yes" xml:space="preserve">
+        <trans-unit id="SettingsSignOutTextBlock.Text" translate="yes" xml:space="preserve">
           <source>Sign Out</source>
           <target state="translated">Wyloguj</target>
         </trans-unit>
-        <trans-unit id="VibrationTextBlock.Text" translate="yes" xml:space="preserve">
+        <trans-unit id="SettingsVibrationTextBlock.Text" translate="yes" xml:space="preserve">
           <source>Vibration</source>
           <target state="translated">Wibracje</target>
         </trans-unit>
@@ -693,7 +574,7 @@ Czy otworzyć stronę z plikami instalacyjnymi w celu instalacji manualnej?</tar
           <source>Level</source>
           <target state="translated">Poziom</target>
         </trans-unit>
-        <trans-unit id="MapAutoRotateTextBlock.Text" translate="yes" xml:space="preserve">
+        <trans-unit id="SettingsMapAutoRotateTextBlock.Text" translate="yes" xml:space="preserve">
           <source>Auto-Rotate Map</source>
           <target state="translated">Autorotacja Mapy</target>
           <note from="MultilingualEditor" annotates="source" priority="4">Czasownik czy rzeczownik?</note>
@@ -707,8 +588,8 @@ Czy otworzyć stronę z plikami instalacyjnymi w celu instalacji manualnej?</tar
           <source>INCUBATORS</source>
           <target state="translated">INKUBATORY</target>
         </trans-unit>
-        <trans-unit id="UseNianticMapTextBlock.Text" translate="yes" xml:space="preserve">
-          <source>Niantic map</source>
+        <trans-unit id="SettingsUseNianticMapTextBlock.Text" translate="yes" xml:space="preserve">
+          <source>Use Niantic Map</source>
           <target state="translated">Mapa Niantic</target>
         </trans-unit>
         <trans-unit id="HpTextBlock.Text" translate="yes" xml:space="preserve">
